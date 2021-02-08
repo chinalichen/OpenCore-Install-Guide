@@ -49,9 +49,9 @@ For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs,
 
 :::
 
-### Delete
+### Delete (删除)
 
-This blocks certain ACPI tables from loading, for us we can ignore this.
+这部分会阻止某些ACPI表的加载，目前用不到，忽略本部分。
 
 ### Patch
 
