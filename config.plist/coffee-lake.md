@@ -32,14 +32,14 @@
 
 ::: tip 信息
 
-这是你为你的系统添加 SSDT 的地方，它们对于**引导 macOS** 非常重要，而且很多用于[定位 USB](https://dortania.github.io/OpenCore-Post-Install/usb/)、[屏蔽不支持的显卡](https://dortania.github.io/OpenCore-Post-Install/) 等等。对于我们的的系统来说，**它们甚至是引导时不可或缺的项目**。可以在这里找到制作和使用它们的指南：[**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
+这是你为你的系统添加 SSDT 的地方，它们对于**引导 macOS** 非常重要，而且很多用于[定位 USB](https://dortania.github.io/OpenCore-Post-Install/usb/)、[屏蔽不支持的显卡](https://dortania.github.io/OpenCore-Post-Install/) 等等。对于我们的的系统来说，**它们甚至是引导时不可或缺的项目**。可以在这里找到制作和使用它们的指南：[**ACPI 入门**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 我们需要添加一些 SSDT 来得到一些 Clover 提供的功能：
 
 | 需要的 SSDT | 说明 |
 | :--- | :--- |
-| **[SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/)** | 允许使用 Haswell 或更高版本的 CPU 的原生电源管理。查看 [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) 以了解更多。 |
-| **[SSDT-EC-USBX](https://dortania.github.io/Getting-Started-With-ACPI/)** | Fixes both the embedded controller and USB power, see [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
+| **[SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/)** | 允许使用 Haswell 或更高版本的 CPU 的原生电源管理。查看 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/) 以了解更多。 |
+| **[SSDT-EC-USBX](https://dortania.github.io/Getting-Started-With-ACPI/)** | 用于修复 EC 和 USB 电源管理，详情请查看 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/) 。 |
 | **[SSDT-AWAC](https://dortania.github.io/Getting-Started-With-ACPI/)** | This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for most B360, B365, H310, H370, Z390 and some Z370 boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://dortania.github.io/Getting-Started-With-ACPI/) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI/) page. |
 | **[SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/)** | So true 300 series motherboards(non-Z370) don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support. See [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
 
