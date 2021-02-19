@@ -28,7 +28,7 @@
 
 ![ACPI](../images/config/config.plist/coffeelake/acpi.png)
 
-### Add
+### Add （添加）
 
 ::: tip 信息
 
@@ -40,22 +40,22 @@
 | :--- | :--- |
 | **[SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/)** | 允许使用 Haswell 或更高版本的 CPU 的原生电源管理。查看 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/) 以了解更多。 |
 | **[SSDT-EC-USBX](https://dortania.github.io/Getting-Started-With-ACPI/)** | 用于修复 EC 和 USB 电源管理，详情请查看 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/) 。 |
-| **[SSDT-AWAC](https://dortania.github.io/Getting-Started-With-ACPI/)** | This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for most B360, B365, H310, H370, Z390 and some Z370 boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://dortania.github.io/Getting-Started-With-ACPI/) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI/) page. |
-| **[SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/)** | So true 300 series motherboards(non-Z370) don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support. See [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
+| **[SSDT-AWAC](https://dortania.github.io/Getting-Started-With-ACPI/)** | 这是 [300 系列 RTC 补丁](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), 绝大多数的 B360, B365, H310, H370, Z390 和一些阻止系统引导macOS的 Z370 主板都需要。 当 AWAC SSDT 因为主板缺失传统 RTC 时钟导致不兼容时，可以使用备选方案 [SSDT-RTC0](https://dortania.github.io/Getting-Started-With-ACPI/) 。请参照 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/) 中决定是否需要并且适合哪种方案。 |
+| **[SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/)** | 真正的 300 系列主板（非z370）在 ACPI 中没有把 FW 芯片声明为MMIO，导致 XNU 会忽略 UEFI 内存映射声明的 MMIO 区域。这个 SSDT 修复了对 NVRAM 的支持。 更多详细信息请参阅 [ACPI 入门指南](https://dortania.github.io/Getting-Started-With-ACPI/)。 |
 
-Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
+注意，你不应该把你生成的 `DSDT.aml` 添加在这里，因为它已经被添加到你的固件中了。所以，如果`DSDT.aml`出现在这里，请一定要把它从 `config.plist`和 EFI/OC/ACPI 目录中删掉。
 
-For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
+如果想要深入了解 DSDT导出、如何制作和编译SSDT，请参阅 [**ACPI入门**](https://dortania.github.io/Getting-Started-With-ACPI/) **页面。** 编译的 SSDT 有个 **.aml** 后缀名(Assembled)，且被放到 `EFI/OC/ACPI` 目录下，并且 **必须** 在你的配置文件的 `ACPI -> Add` 中指定它。
 
 :::
 
-### Delete (删除)
+### Delete （删除）
 
 这部分会阻止某些ACPI表的加载，目前用不到，忽略本部分。
 
-### Patch
+### Patch （补丁）
 
-This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, our patches are handled by our SSDTs. This is a much cleaner solution as this will allow us to boot Windows and other OSes with OpenCore
+这部分可以让我们通过 OpenCore 动态地修改 ACPI （DSDT、SSDT等）。对我们来说，补丁已经在 SSDT 中处理了。这是一种更干净的方案，因为这样可以让我们使用 OpenCore 启动 Windows 和其他的操作系统。
 
 ### Quirks
 
