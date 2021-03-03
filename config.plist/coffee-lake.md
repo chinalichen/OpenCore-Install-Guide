@@ -61,38 +61,39 @@
 
 与 ACPI 相关的设置，因为我们没有使用这些专用设置，所以保持默认值即可。
 
-## Booter （启动）
+## Booter （启动器）
 
 ![Booter](../images/config/config-universal/hedt-booter.png)
 
 本部分是 boot.efi 使用OpenRuntime补丁相关的专用设置，用于代替 AptioMemoryFix.efi。
 
-### MmioWhitelist
+### MmioWhitelist （Mmio白名单）
 
 本章节声明了那些直通 macOS 系统的设备，这些设备一般会被忽略掉。对我们来说，直接忽略掉本章节即可。
 
-### Quirks
+### Quirks （专用设置）
 
-::: tip Info
-Settings relating to boot.efi patching and firmware fixes, for us, we need to change the following:
+::: 信息
 
-| Quirk | Enabled | Comment |
+与 boot.efi 补丁和固件修复相关的设置，对于我们，需要更改以下的内容：
+
+| 专用设置 | 是否启用 | 备注 |
 | :--- | :--- | :--- |
 | DevirtualiseMmio | YES | |
 | EnableWriteUnprotector | NO | |
-| ProtectUefiServices | YES | Needed on Z390 system |
+| ProtectUefiServices | YES | Z390 主办上需要 |
 | RebuildAppleMemoryMap | YES | |
 | SyncRuntimePermissions | YES | |
 :::
 
-::: details More in-depth Info
+::: 更深入详细的信息
 
 * **AvoidRuntimeDefrag**: YES
-  * Fixes UEFI runtime services like date, time, NVRAM, power control, etc
+  * 修复 UEFI 运行时的服务，如日期、时间、NVRAM 和电源控制等。
 * **DevirtualiseMmio**: YES
-  * Reduces Stolen Memory Footprint, expands options for `slide=N` values and very helpful with fixing Memory Allocation issues on Z390. Requires `ProtectUefiServices` as well on IceLake and Z390 Coffee Lake
+  * 减少内存占用空间，扩展 `slide=N` 值的选项，对于解决 Z390 上的内存分配文件非常有帮助。如果是 IceLake 和使用 Z390 主板的 Coffee Lake 处理器，则需要开启 `ProtectUefiServices` 配置。
 * **EnableWriteUnprotector**: NO
-  * This quirk and RebuildAppleMemoryMap can commonly conflict, recommended to enable the latter on newer platforms and disable this entry.
+  * 通常情况下会跟 `RebuildAppleMemoryMap` 产生冲突。建议在较新的平台上禁用该条目，启用 `RebuildAppleMemoryMap` 。
   * However, due to issues with OEMs not using the latest EDKII builds you may find that the above combo will result in early boot failures. This is due to missing the `MEMORY_ATTRIBUTE_TABLE` and such we recommend disabling RebuildAppleMemoryMap and enabling EnableWriteUnprotector. More info on this is covered in the [troubleshooting section](/troubleshooting/extended/kernel-issues.md#stuck-on-eb-log-exitbs-start)
 * **ProtectUefiServices**: NO
   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and Z390 systems'
