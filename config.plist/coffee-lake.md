@@ -57,19 +57,19 @@
 
 这部分可以让我们通过 OpenCore 动态地修改 ACPI （DSDT、SSDT等）。对我们来说，补丁已经在 SSDT 中处理了。这是一种更干净的方案，因为这样可以让我们使用 OpenCore 启动 Windows 和其他的操作系统。
 
-### Quirks
+### Quirks （专用设置）
 
-Settings relating to ACPI, leave everything here as default as we have no use for these quirks.
+与 ACPI 相关的设置，因为我们没有使用这些专用设置，所以保持默认值即可。
 
-## Booter
+## Booter （启动）
 
 ![Booter](../images/config/config-universal/hedt-booter.png)
 
-This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi
+本部分是 boot.efi 使用OpenRuntime补丁相关的专用设置，用于代替 AptioMemoryFix.efi。
 
 ### MmioWhitelist
 
-This section is allowing devices to be passthrough to macOS that are generally ignored, for us we can ignore this section.
+本章节声明了那些直通 macOS 系统的设备，这些设备一般会被忽略掉。对我们来说，直接忽略掉本章节即可。
 
 ### Quirks
 
